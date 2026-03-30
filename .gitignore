@@ -9,13 +9,12 @@
 /coverage
 
 # production
-/build
-node_modules/
-build/
-/dist/
-.cache/
-.next/
-out/
+build
+node_modules
+dist
+.cache
+.next
+out
 .env
 
 # misc
