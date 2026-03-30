@@ -59,3 +59,7 @@ io.on("connect", (socket) => {
 server.listen(4000, () => {
   console.log("Server running on port 4000");
 });
+
+app.get("/", (req, res) => {
+  res.send("Backend is running");
+});
