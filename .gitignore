@@ -10,6 +10,13 @@
 
 # production
 /build
+node_modules/
+build/
+/dist/
+.cache/
+.next/
+out/
+.env
 
 # misc
 .DS_Store
