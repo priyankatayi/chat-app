@@ -18,7 +18,7 @@ const AccountContextProvider = ({ children }) => {
       navigate("/home");
     };
     checkUser();
-  }, []);
+  }, [navigate]);
   return (
     <AccountContext.Provider value={{ loggedIn, setIsLoggedIn }}>
       {children}

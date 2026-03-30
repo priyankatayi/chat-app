@@ -6,9 +6,13 @@ const useSocket = (setFriendsList, setMessages) => {
   const { setIsLoggedIn } = useAccountContext();
   useEffect(() => {
     socket.connect();
-    socket.on("connect_error", () => {
-      setIsLoggedIn(false);
-    });
+    socket.on(
+      "connect_error",
+      () => {
+        setIsLoggedIn(false);
+      },
+      [setFriendsList, setMessages, setIsLoggedIn],
+    );
 
     socket.on("friendsList", (friendsList) => {
       setFriendsList(friendsList);

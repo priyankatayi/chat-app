@@ -18,7 +18,7 @@ import { formSchema } from "@whatsapp-clone/common";
 import { useAccountContext } from "../AccountContextProvider";
 
 function Register() {
-  const { loggedIn, setIsLoggedIn } = useAccountContext();
+  const { setIsLoggedIn } = useAccountContext();
 
   const [error, setError] = useState("");
   const formik = useFormik({
