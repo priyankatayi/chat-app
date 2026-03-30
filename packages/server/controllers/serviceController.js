@@ -20,7 +20,8 @@ const sessionMidleware = session({
 
 const corsConfig = {
   origin:
-    "https://whatsapp-clone-client-git-main-priyankas-projects-197eac60.vercel.app/",
+    "https://whatsapp-clone-client-git-main-priyankas-projects-197eac60.vercel.app",
+  methods: ["GET", "POST"],
   credentials: true,
 };
 const wrap = (expressMiddleware) => (socket, next) =>
