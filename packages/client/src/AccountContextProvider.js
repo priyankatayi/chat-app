@@ -10,9 +10,12 @@ const AccountContextProvider = ({ children }) => {
   const navigate = useNavigate();
   useEffect(() => {
     const checkUser = async () => {
-      const res = await fetch("http://localhost:4000/auth/login", {
-        credentials: "include",
-      });
+      const res = await fetch(
+        "https://whatsapp-clone-server-1rbm.onrender.com/auth/login",
+        {
+          credentials: "include",
+        },
+      );
       const val = await res.json();
       setIsLoggedIn(val.loggedIn);
       navigate("/home");

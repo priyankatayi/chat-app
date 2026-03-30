@@ -22,7 +22,7 @@ function Login() {
         const val = { ...values };
         actions.resetForm();
         console.log("POST");
-        fetch("http://localhost:4000/auth/login", {
+        fetch("https://whatsapp-clone-server-1rbm.onrender.com/auth/login", {
           method: "POST",
           credentials: "include",
           headers: { "Content-Type": "application/json" },
