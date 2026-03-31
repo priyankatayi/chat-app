@@ -19,8 +19,7 @@ const sessionMidleware = session({
 });
 
 const corsConfig = {
-  origin:
-    "https://whatsapp-clone-client-git-main-priyankas-projects-197eac60.vercel.app",
+  origin: process.env.CLIENT_URL,
   methods: ["GET", "POST"],
   credentials: true,
 };

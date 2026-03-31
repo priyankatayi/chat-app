@@ -25,7 +25,7 @@ function Register() {
     initialValues: { username: "", password: "" },
     validationSchema: formSchema,
     onSubmit: (values, actions) => {
-      fetch("https://whatsapp-clone-server-1rbm.onrender.com/auth/signup", {
+      fetch(`${process.env.REACT_APP_SERVER_URL}/auth/signup`, {
         method: "POST",
         credentials: "include",
         headers: { "content-type": "application/json" },

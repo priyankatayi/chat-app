@@ -11,7 +11,7 @@ const AccountContextProvider = ({ children }) => {
   useEffect(() => {
     const checkUser = async () => {
       const res = await fetch(
-        "https://whatsapp-clone-server-1rbm.onrender.com/auth/login",
+        `${process.env.REACT_APP_SERVER_URL}/auth/login`,
         {
           credentials: "include",
         },

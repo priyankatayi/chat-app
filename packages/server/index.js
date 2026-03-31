@@ -35,6 +35,8 @@ app.use(sessionMidleware);
 
 app.use("/auth", authRouter);
 
+app.set("trust proxy", 1);
+
 //socket io requests will not go through expression session middlware,
 // so you will not have access to session cookies
 //so we have create a common session for both express and socket io to use.
