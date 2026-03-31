@@ -44,7 +44,9 @@ function Register() {
           } else {
             console.log(data.loggedIn, "loggedIn");
             setIsLoggedIn(data.loggedIn);
-            navigate("/home");
+            if (data.loggedIn) {
+              navigate("/home");
+            }
           }
         });
       actions.resetForm();
