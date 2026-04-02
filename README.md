@@ -19,8 +19,8 @@ The application uses **Socket.io** for real-time communication, **Redis** for fa
 
 ## Live Demo
 
-- Frontend: [https://whatsapp-clone-client-taupe.vercel.app/](https://whatsapp-clone-client-taupe.vercel.app/)
-- Backend: [https://whatsapp-clone-server-1rbm.onrender.com/](https://whatsapp-clone-server-1rbm.onrender.com//)
+- Frontend: [https://chat-app-iota-green-13.vercel.app/](https://chat-app-iota-green-13.vercel.app/)
+- Backend: [https://whatsapp-clone-server-1rbm.onrender.com/](https://whatsapp-clone-server-1rbm.onrender.com/)
 
 ### ⚠️ Note
 
