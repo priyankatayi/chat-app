@@ -6,7 +6,7 @@ import { MessagesContext } from "./Home";
 import socket from "../socket";
 
 function Chatbox({ userid }) {
-  const { messages, setMessages } = useContext(MessagesContext);
+  const { setMessages } = useContext(MessagesContext);
   return (
     <Formik
       initialValues={{ message: "" }}
