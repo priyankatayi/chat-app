@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Grid, GridItem, Tabs } from "@chakra-ui/react";
 import Chat from "./Chat";
 import Sidebar from "./Sidebar";
@@ -9,7 +9,20 @@ function Home() {
   const [friendsList, setFriendsList] = useState([]);
   const [messages, setMessages] = useState([]);
   const [friendsIndex, setFriendsIndex] = useState(0);
-  useSocket(setFriendsList, setMessages);
+  useSocket(setFriendsList, setMessages, friendsList);
+
+  useEffect(() => {
+    const requestNotificationPermission = async () => {
+      if (!("Notification" in window)) {
+        console.log("This browser does not support notifications");
+        return;
+      }
+
+      const permission = await Notification.requestPermission();
+      console.log("Permission:", permission);
+    };
+    requestNotificationPermission();
+  }, []);
   return (
     <FriendsContext.Provider value={{ friendsList, setFriendsList }}>
       <Grid

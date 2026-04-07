@@ -1,8 +1,22 @@
 import { useEffect } from "react";
 import socket from "../socket";
 import { useAccountContext } from "../AccountContextProvider";
+const useSocket = (setFriendsList, setMessages, friendsList) => {
+  const showNotification = (title, options = {}) => {
+    if (
+      Notification.permission === "granted" &&
+      document.visibilityState === "hidden"
+    ) {
+      const notification = new Notification(title, {
+        body: options.body || "",
+        ...options,
+      });
 
-const useSocket = (setFriendsList, setMessages) => {
+      notification.onclick = () => {
+        window.focus();
+      };
+    }
+  };
   const { setIsLoggedIn } = useAccountContext();
   useEffect(() => {
     socket.connect();
@@ -20,6 +34,12 @@ const useSocket = (setFriendsList, setMessages) => {
 
     socket.on("message", (message) => {
       setMessages((prev) => [...prev, message]);
+      const friend = friendsList.find(
+        (person) => person.userid === message.from,
+      );
+      showNotification(`Message from ${friend?.username}`, {
+        body: message.content,
+      });
     });
 
     socket.on("connected", (status, username) => {
@@ -37,8 +57,9 @@ const useSocket = (setFriendsList, setMessages) => {
       socket.off("connected");
       socket.off("friendsList");
       socket.off("messages");
+      socket.off("message");
     };
-  }, [setFriendsList, setMessages, setIsLoggedIn]);
+  }, [setFriendsList, setMessages, setIsLoggedIn, friendsList]);
 };
 
 export default useSocket;
