@@ -11,9 +11,24 @@ The application uses **Socket.io** for real-time communication, **Redis** for fa
 - User authentication (session-based)
 - Adding friends
 - Real-time messaging using Socket.io
+- Browser notifications for new messages (Web Notifications API)
+- Notifications only trigger when user is inactive (tab not in focus)
 - Persistent chat using PostgreSQL
 - Redis session management
 - Cross-origin deployment support (Frontend + Backend)
+
+---
+
+## Notification Feature
+
+The application includes real-time browser notifications to enhance user experience:
+
+- Triggers notification on new incoming messages
+- Uses Web Notifications API
+- Only shows when the user is not actively viewing the chat tab
+- Displays sender name and message preview
+- Includes click-to-focus behavior (brings user back to chat window)
+- Requires user permission approval in browser
 
 ---
 
@@ -51,6 +66,7 @@ To restart the server:
 You should see:
 
 - Messages appear instantly in both windows
+- Browser notifications appear when a message is received in an inactive tab
 - Real-time updates without refreshing
 
 This demonstrates the real-time chat functionality powered by Socket.io.
@@ -64,6 +80,7 @@ This demonstrates the real-time chat functionality powered by Socket.io.
 - React.js
 - Context API
 - Fetch
+- Web Notifications API
 
 ### Backend
 
@@ -188,6 +205,7 @@ npm start
 - Requires proper cookie config:
   - `sameSite: "none"`
   - `secure: true`
+- Notifications require browser permission and HTTPS/localhost
 - Works best over HTTPS
 
 ---
@@ -197,7 +215,6 @@ npm start
 - JWT authentication
 - Add typing indicators
 - Improve UI/UX
-- Add notifications
 - Optimize message storage
 
 ---
@@ -208,6 +225,7 @@ Built by following a tutorial and extended with real-world improvements:
 
 - Deployment (Vercel + Render)
 - Redis + PostgreSQL integration
+- Browser Notifications API integration
 - Debugging CORS, cookies, WebSockets
 - Understanding production full-stack architecture
 
