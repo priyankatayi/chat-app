@@ -21,7 +21,7 @@ function Chat({ userid }) {
                   message.to === friend.userid ||
                   message.from === friend.userid,
               )
-              .map((msg) => (
+              .map((msg, index) => (
                 <Text
                   m={
                     msg.to === friend.userid
@@ -30,7 +30,7 @@ function Chat({ userid }) {
                   }
                   fontSize="lg"
                   bg={msg.to === friend.userid ? "blue.100" : "gray.100"}
-                  key={`msg:${friend.userid}`}
+                  key={`msg:${friend.userid}:${index}`}
                   color="gray.800"
                   borderRadius="10px"
                   p="0.5rem 1rem"

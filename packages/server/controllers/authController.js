@@ -88,3 +88,17 @@ module.exports.registerUser = async (req, res) => {
     res.json({ loggedIn: false, status: "user already exists" });
   }
 };
+
+module.exports.logoutHandler = async (req, res) => {
+  if (!req.session.user) {
+    return res.json({ loggedIn: false, message: "Already logged out" });
+  }
+  req.session.destroy((err) => {
+    if (err) {
+      console.log("Logout error:", err);
+      return res.status(500).json({ loggedIn: true, message: "Logout failed" });
+    }
+    res.clearCookie("sid");
+    return res.json({ loggedIn: false, message: "Logged out successfully" });
+  });
+};
