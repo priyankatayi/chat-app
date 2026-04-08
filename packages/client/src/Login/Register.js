@@ -18,7 +18,7 @@ import { formSchema } from "@whatsapp-clone/common";
 import { useAccountContext } from "../AccountContextProvider";
 
 function Register() {
-  const { setIsLoggedIn } = useAccountContext();
+  const { setIsLoggedIn, setUserName } = useAccountContext();
 
   const [error, setError] = useState("");
   const formik = useFormik({
@@ -42,6 +42,7 @@ function Register() {
             setError(data.status);
           } else {
             setIsLoggedIn(data.loggedIn);
+            setUserName(data.username);
             if (data.loggedIn) {
               navigate("/home");
             }

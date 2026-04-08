@@ -26,15 +26,15 @@ function Home() {
   return (
     <FriendsContext.Provider value={{ friendsList, setFriendsList }}>
       <Grid
-        templateColumns="repeat(10, 1fr)"
+        templateColumns={{ base: "1fr", md: "300px 1fr" }}
         h="100vh"
         as={Tabs}
         onChange={(index) => setFriendsIndex(index)}
       >
-        <GridItem colSpan="3" borderRight="1px solid gray">
+        <GridItem borderRight="1px solid gray">
           <Sidebar />
         </GridItem>
-        <GridItem colSpan="7" maxH="100vh">
+        <GridItem maxH="100vh">
           <MessagesContext.Provider value={{ messages, setMessages }}>
             <Chat userid={friendsList[friendsIndex]?.userid} />
           </MessagesContext.Provider>

@@ -9,7 +9,7 @@ import {
   Text,
   Circle,
 } from "@chakra-ui/react";
-import { ChatIcon } from "@chakra-ui/icons";
+import { AddIcon } from "@chakra-ui/icons";
 import { useContext } from "react";
 import { FriendsContext } from "./Home";
 import AddFriend from "./AddFriend";
@@ -17,11 +17,12 @@ import { useDisclosure } from "@chakra-ui/react";
 import { useAccountContext } from "../AccountContextProvider";
 import { useNavigate } from "react-router-dom";
 import socket from "../socket";
+import { capitalize } from "../utils/stringUtils";
 
 function Sidebar() {
   const { friendsList } = useContext(FriendsContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { setIsLoggedIn } = useAccountContext();
+  const { setIsLoggedIn, userName } = useAccountContext();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -44,13 +45,14 @@ function Sidebar() {
       console.error("Logout failed:", err);
     }
   };
+
   return (
     <VStack h="100%" align="stretch">
       <VStack py="1.4rem">
         <HStack justify="space-around" w="100%">
           <Heading size="md">Add Friend</Heading>
           <Button onClick={onOpen}>
-            <ChatIcon />
+            <AddIcon />
           </Button>
         </HStack>
         <Divider />
@@ -62,23 +64,35 @@ function Sidebar() {
                 w="20px"
                 h="20px"
               />
-              <Text>{friend.username}</Text>
+              <Text>{capitalize(friend.username)}</Text>
             </HStack>
           </VStack>
         ))}
       </VStack>
 
-      <Button
+      <VStack
+        spacing={2}
+        px={4}
+        py={3}
+        borderTop="1px solid #2D2D2D"
+        align="stretch"
         mt="auto"
-        mx={4}
-        mb={4}
-        size="sm"
-        colorScheme="red"
-        w="calc(100% - 32px)" // full width with side spacing
-        onClick={handleLogout}
       >
-        Logout
-      </Button>
+        <HStack spacing={3}>
+          <Circle bg="green.400" size="30px" />
+          <VStack align="start" spacing={0}>
+            <Text fontWeight="bold">{capitalize(userName)}</Text>
+            <Text fontSize="xs" color="gray.400">
+              Online
+            </Text>
+          </VStack>
+        </HStack>
+
+        <Button size="sm" colorScheme="red" w="100%" onClick={handleLogout}>
+          Logout
+        </Button>
+      </VStack>
+
       <AddFriend isOpen={isOpen} onClose={onClose} />
     </VStack>
   );

@@ -11,7 +11,7 @@ import TextField from "./TextField";
 
 function Login() {
   const navigate = useNavigate();
-  const { setIsLoggedIn } = useAccountContext();
+  const { setIsLoggedIn, setUserName } = useAccountContext();
   const [error, setError] = useState("");
 
   return (
@@ -40,6 +40,7 @@ function Login() {
               setError(data.status);
             } else if (data.loggedIn) {
               setIsLoggedIn(data.loggedIn);
+              setUserName(data.username);
               if (data.loggedIn) {
                 navigate("/home");
               }

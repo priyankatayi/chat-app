@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import socket from "../socket";
 import { useAccountContext } from "../AccountContextProvider";
+import { capitalize } from "../utils/stringUtils";
+
 const useSocket = (setFriendsList, setMessages, friendsList) => {
   const showNotification = (title, options = {}) => {
     if (
@@ -37,7 +39,7 @@ const useSocket = (setFriendsList, setMessages, friendsList) => {
       const friend = friendsList.find(
         (person) => person.userid === message.from,
       );
-      showNotification(`Message from ${friend?.username}`, {
+      showNotification(`Message from ${capitalize(friend?.username)}`, {
         body: message.content,
       });
     });
