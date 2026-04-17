@@ -1,5 +1,5 @@
 import { TabPanel, TabPanels, Text, VStack } from "@chakra-ui/react";
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext } from "react";
 import { FriendsContext, MessagesContext } from "./Home";
 import Chatbox from "./Chatbox";
 import FriendPanel from "./FriendPanel";
