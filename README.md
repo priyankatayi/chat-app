@@ -8,14 +8,17 @@ The application uses **Socket.io** for real-time communication, **Redis** for fa
 
 ## Features
 
-- User authentication (session-based)
-- Adding friends
-- Real-time messaging using Socket.io
-- Browser notifications for new messages (Web Notifications API)
-- Notifications only trigger when user is inactive (tab not in focus)
-- Persistent chat using PostgreSQL
-- Redis session management
-- Cross-origin deployment support (Frontend + Backend)
+- Session-based authentication (login/register/logout)
+- Secure password hashing using bcrypt
+- Redis-based session management
+- Add and manage friends
+- Real-time one-to-one messaging (Socket.io)
+- Persistent chat history using Redis
+- Online/offline user presence tracking
+- Real-time typing indicators
+- Browser notifications for new messages
+- Auto-login with session persistence
+- Cross-origin (CORS) support
 
 ---
 
@@ -213,9 +216,10 @@ npm start
 ## Future Improvements
 
 - JWT authentication
-- Add typing indicators
+- Persist messages in PostgreSQL for durability
 - Improve UI/UX
-- Optimize message storage
+- Add message read receipts
+- Add media/file sharing
 
 ---
 
@@ -226,6 +230,7 @@ Built by following a tutorial and extended with real-world improvements:
 - Deployment (Vercel + Render)
 - Redis + PostgreSQL integration
 - Browser Notifications API integration
+- Implemented real-time typing indicators using Socket.io with debounced event emission and optimized UI updates for active conversations.
 - Debugging CORS, cookies, WebSockets
 - Understanding production full-stack architecture
 
