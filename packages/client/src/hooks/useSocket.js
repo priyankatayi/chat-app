@@ -71,7 +71,7 @@ const useSocket = (setFriendsList, setMessages, friendsList, setIsTyping) => {
       socket.off("typing");
       socket.off("stop_typing");
     };
-  }, [setFriendsList, setMessages, setIsLoggedIn, friendsList]);
+  }, [setFriendsList, setMessages, setIsLoggedIn, friendsList, setIsTyping]);
 };
 
 export default useSocket;
