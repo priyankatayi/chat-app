@@ -17,6 +17,8 @@ const {
   addFriend,
   onDisconnect,
   addMessage,
+  addTypingIndicator,
+  removeTypingIndicator,
 } = require("./controllers/socketController");
 const io = new Server(server, {
   cors: corsConfig,
@@ -53,6 +55,9 @@ io.on("connect", (socket) => {
   );
 
   socket.on("message", (message) => addMessage(socket, message));
+
+  socket.on("typing", ({ to }) => addTypingIndicator(socket, to));
+  socket.on("stop_typing", ({ to }) => removeTypingIndicator(socket, to));
 
   socket.on("disconnecting", () => onDisconnect(socket));
 });

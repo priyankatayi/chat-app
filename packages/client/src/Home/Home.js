@@ -5,11 +5,14 @@ import Sidebar from "./Sidebar";
 import useSocket from "../hooks/useSocket";
 export const FriendsContext = React.createContext();
 export const MessagesContext = React.createContext();
+
 function Home() {
   const [friendsList, setFriendsList] = useState([]);
   const [messages, setMessages] = useState([]);
   const [friendsIndex, setFriendsIndex] = useState(0);
-  useSocket(setFriendsList, setMessages, friendsList);
+
+  const [typing, setIsTyping] = useState(false);
+  useSocket(setFriendsList, setMessages, friendsList, setIsTyping);
 
   useEffect(() => {
     const requestNotificationPermission = async () => {
@@ -35,7 +38,9 @@ function Home() {
           <Sidebar />
         </GridItem>
         <GridItem maxH="100vh">
-          <MessagesContext.Provider value={{ messages, setMessages }}>
+          <MessagesContext.Provider
+            value={{ messages, setMessages, typing, setIsTyping }}
+          >
             <Chat userid={friendsList[friendsIndex]?.userid} />
           </MessagesContext.Provider>
         </GridItem>

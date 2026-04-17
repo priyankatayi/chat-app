@@ -3,7 +3,7 @@ import socket from "../socket";
 import { useAccountContext } from "../AccountContextProvider";
 import { capitalize } from "../utils/stringUtils";
 
-const useSocket = (setFriendsList, setMessages, friendsList) => {
+const useSocket = (setFriendsList, setMessages, friendsList, setIsTyping) => {
   const showNotification = (title, options = {}) => {
     if (
       Notification.permission === "granted" &&
@@ -54,12 +54,22 @@ const useSocket = (setFriendsList, setMessages, friendsList) => {
       );
     });
 
+    socket.on("typing", () => {
+      setIsTyping(true);
+    });
+
+    socket.on("stop_typing", () => {
+      setIsTyping(false);
+    });
+
     return () => {
       socket.off("connect_error");
       socket.off("connected");
       socket.off("friendsList");
       socket.off("messages");
       socket.off("message");
+      socket.off("typing");
+      socket.off("stop_typing");
     };
   }, [setFriendsList, setMessages, setIsLoggedIn, friendsList]);
 };
