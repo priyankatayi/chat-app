@@ -3,7 +3,13 @@ import socket from "../socket";
 import { useAccountContext } from "../AccountContextProvider";
 import { capitalize } from "../utils/stringUtils";
 
-const useSocket = (setFriendsList, setMessages, friendsList, setIsTyping) => {
+const useSocket = (
+  setFriendsList,
+  setMessages,
+  friendsList,
+  setIsTyping,
+  friendId,
+) => {
   const showNotification = (title, options = {}) => {
     if (
       Notification.permission === "granted" &&
@@ -54,12 +60,16 @@ const useSocket = (setFriendsList, setMessages, friendsList, setIsTyping) => {
       );
     });
 
-    socket.on("typing", () => {
-      setIsTyping(true);
+    socket.on("typing", ({ from, to }) => {
+      if (from === friendId) {
+        setIsTyping(true);
+      }
     });
 
-    socket.on("stop_typing", () => {
-      setIsTyping(false);
+    socket.on("stop_typing", ({ from, to }) => {
+      if (from === friendId) {
+        setIsTyping(false);
+      }
     });
 
     return () => {
@@ -71,7 +81,14 @@ const useSocket = (setFriendsList, setMessages, friendsList, setIsTyping) => {
       socket.off("typing");
       socket.off("stop_typing");
     };
-  }, [setFriendsList, setMessages, setIsLoggedIn, friendsList, setIsTyping]);
+  }, [
+    setFriendsList,
+    setMessages,
+    setIsLoggedIn,
+    friendsList,
+    setIsTyping,
+    friendId,
+  ]);
 };
 
 export default useSocket;

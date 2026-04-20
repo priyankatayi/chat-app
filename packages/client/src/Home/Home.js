@@ -11,8 +11,9 @@ function Home() {
   const [messages, setMessages] = useState([]);
   const [friendsIndex, setFriendsIndex] = useState(0);
 
+  const userid = friendsList[friendsIndex]?.userid;
   const [typing, setIsTyping] = useState(false);
-  useSocket(setFriendsList, setMessages, friendsList, setIsTyping);
+  useSocket(setFriendsList, setMessages, friendsList, setIsTyping, userid);
 
   useEffect(() => {
     const requestNotificationPermission = async () => {
@@ -41,7 +42,7 @@ function Home() {
           <MessagesContext.Provider
             value={{ messages, setMessages, typing, setIsTyping }}
           >
-            <Chat userid={friendsList[friendsIndex]?.userid} />
+            <Chat userid={userid} />
           </MessagesContext.Provider>
         </GridItem>
       </Grid>
