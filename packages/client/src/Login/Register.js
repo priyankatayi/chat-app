@@ -9,8 +9,10 @@ import {
   Button,
   Heading,
   Text,
+  Box,
+  Icon,
 } from "@chakra-ui/react";
-
+import { ChatIcon } from "@chakra-ui/icons";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { ArrowBackIcon } from "@chakra-ui/icons";
@@ -62,7 +64,13 @@ function Register() {
       spacing="1rem"
       onSubmit={formik.handleSubmit}
     >
-      <Heading>Sign Up</Heading>
+      <Box textAlign="center" mb="1rem" mt="auto">
+        <Icon as={ChatIcon} w={10} h={10} color="teal.500" mb="0.5rem" />
+        <Heading size="lg">ChatApp</Heading>
+        <Text color="gray.500" fontSize="sm">
+          Sign in to your ChatApp account
+        </Text>
+      </Box>
       <Text as="p" color="red.500">
         {error}
       </Text>
@@ -102,6 +110,10 @@ function Register() {
           </Button>
         </ButtonGroup>
       </FormControl>
+      <Text fontSize="xs" color="gray.400" pt="1rem" mt="auto" mb="1rem">
+        This is a personal chat application. Your credentials are only used to
+        access your ChatApp account.
+      </Text>
     </VStack>
   );
 }
